@@ -24,3 +24,11 @@ quant_columns = [
     'Total_Ct_Chng_Q4_Q1',
     'Avg_Utilization_Ratio'
 ]
+
+eda_plots = {
+    "Churn":"Churn_Histogram.png",
+    "Customer_Age":"Customer_Age_Histogram.png",
+    "Marital_Status":"Marital_Status_Bar.png",
+    "Total_Trans_Ct":"Total_Trans_Ct.png",
+    "heatmap":"Heatmap.png"
+}

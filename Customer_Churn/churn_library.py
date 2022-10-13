@@ -1,19 +1,14 @@
-# coding=utf-8
 # library doc string
 
 
 # import libraries
-import os
-
-os.environ['QT_QPA_PLATFORM'] = 'offscreen'
 import shap
 import joblib
+import pytest
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns;
-
-sns.set()
+import seaborn as sns; sns.set()
 
 from sklearn.preprocessing import normalize
 from sklearn.model_selection import train_test_split
@@ -23,37 +18,70 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 
 from sklearn.metrics import plot_roc_curve, classification_report
+import os
+from pathlib import Path
+os.environ['QT_QPA_PLATFORM']='offscreen'
 
-class ChurnLibrary:
+images_path = Path(__file__).parent/"images"
+images_path.mkdir(parents=True, exist_ok=True)
 
-    def import_data(self, pth: str):
-        """
-        returns dataframe for the csv found at pth
+def import_data(pth):
+    '''
+    returns dataframe for the csv found at pth
+    input:
+            pth: a path to the csv
+    output:
+            df: pandas dataframe
+    '''	
+    return pd.read_csv(pth)
 
-        input:
-                pth: a path to the csv
-        output:
-                df: pandas dataframe
-        """
-        return pd.read_csv(pth)
-
-
-def perform_eda(df: pd.DataFrame):
+def plots(df_column, plot_type):
     """
+    df_column: series to plot
+    plot_type: ["hist","bar","sns_hist_density"]
+    return: matplotlib figure
+    """
+    plt.figure(figsize=(20,10)) 
+    if plot_type=="hist":
+        fig = df_column.hist()
+    if plot_type=="bar":
+        fig = df_column.plot(kind="bar")
+    if plot_type=="sns_hist_density":
+        # fig = sns.histplot(df_column, stat='density', kde=True)
+        fig = sns.distplot(df_column, kde=True)
+    if plot_type=="sns_heatmap":
+        fig = sns.heatmap(df_column.corr(), annot=False, cmap='Dark2_r', linewidths = 2)
+
+    return fig.get_figure()
+        
+
+def perform_eda(df):
+    '''
     perform eda on df and save figures to images folder
     input:
             df: pandas dataframe
 
     output:
             None
-    """
-    # print(df.head())
-    # print(df.shape)
-    # print(df.isnull().sum())
-    # df.describe()
-
+    '''
     df['Churn'] = df['Attrition_Flag'].apply(lambda val: 0 if val == "Existing Customer" else 1)
-
+    plots(
+        df_column=df["Churn"], plot_type="hist"
+    ).savefig(images_path/"Churn_Histogram.png")
+    plots(
+        df_column=df["Customer_Age"], plot_type="hist"
+    ).savefig(images_path/"Customer_Age_Histogram.png")
+    plots(
+        df_column=df.Marital_Status.value_counts('normalize'), plot_type="bar"
+    ).savefig(images_path/"Marital_Status_Bar.png")
+    plots(
+        df_column=df['Total_Trans_Ct'], plot_type="sns_hist_density"
+    ).savefig(images_path/"Total_Trans_Ct.png")
+    plots(
+        df_column=df, plot_type="sns_heatmap"
+    ).savefig(images_path/"Heatmap.png")
+    
+    
 
 
 def encoder_helper(df, category_lst, response):
@@ -84,7 +112,6 @@ def perform_feature_engineering(df, response):
               y_train: y training data
               y_test: y testing data
     '''
-
 
 def classification_report_image(y_train,
                                 y_test,
@@ -122,9 +149,8 @@ def feature_importance_plot(model, X_data, output_pth):
     '''
     pass
 
-
 def train_models(X_train, X_test, y_train, y_test):
-    """
+    '''
     train, store model results: images + scores, and store models
     input:
               X_train: X training data
@@ -133,5 +159,5 @@ def train_models(X_train, X_test, y_train, y_test):
               y_test: y testing data
     output:
               None
-    """
+    '''
     pass
