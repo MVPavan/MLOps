@@ -32,3 +32,18 @@ eda_plots = {
     "Total_Trans_Ct":"Total_Trans_Ct.png",
     "heatmap":"Heatmap.png"
 }
+
+result_plots = {
+    "roc":"RFC_LR_ROC.png",
+    "rfc_accuracy":"RFC_Accuracy.png",
+    "lr_accuracy":"LR_Accuracy.png",
+    "features":"Feature_Importance.png",
+    "shap":"Shap_Summary.png"
+}
+
+model_paths = {
+    "rfc":"rfc_model.pkl",
+    "lr":"logistic_model.pkl",
+    "rfc_org":"rfc_model_org.pkl",
+    "lr_org":"logistic_model_org.pkl"
+}
