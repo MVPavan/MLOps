@@ -94,9 +94,9 @@ class ChurnLibrary:
 
         converts catergorical column to numerical/onehot encoding and appends to dataframe
         '''
-        for cat_col in consts.cat_columns:
-            self.df[f"{cat_col}_Churn"] = self.df[cat_col].map(self.df.groupby(cat_col).mean(numeric_only=True)['Churn'])
-            consts.quant_columns.append(f"{cat_col}_Churn")
+        for cat_col, cat_col_new in consts.cat_columns.items():
+            self.df[cat_col_new] = self.df[cat_col].map(self.df.groupby(cat_col).mean(numeric_only=True)['Churn'])
+            consts.quant_columns.append(cat_col_new)
         
 
     def perform_feature_engineering(self):
@@ -117,12 +117,16 @@ class ChurnLibrary:
              train_test_split(self.X, self.y, test_size= 0.3, random_state=42)
 
     def save_models(self):
-        joblib.dump(self.rfc, models_path/consts.model_paths["rfc"])
-        joblib.dump(self.lrc, models_path/consts.model_paths["lr"])
+        joblib.dump(self.rfc, models_path/consts.model_names["rfc"])
+        joblib.dump(self.lrc, models_path/consts.model_names["lr"])
     
-    def load_models(self, rfc_tag="rfc_org", lr_tag="lr_org"):
-        self.rfc = joblib.load(models_path/consts.model_paths[rfc_tag])
-        self.lrc = joblib.load(models_path/consts.model_paths[lr_tag])
+    def load_models(self, load_pretrained=True):
+        if load_pretrained:
+            name_dict = consts.model_names_pretrained
+        else:
+            name_dict = consts.model_names
+        self.rfc = joblib.load(models_path/name_dict["rfc"])
+        self.lrc = joblib.load(models_path/name_dict["lrc"])
 
     def classification_report_image(self):
         '''
@@ -229,9 +233,9 @@ class ChurnLibrary:
         self.cv_rfc = GridSearchCV(estimator=self.rfc, param_grid=param_grid, cv=5)
         self.cv_rfc.fit(self.X_train, self.y_train)
         self.rfc = self.cv_rfc.best_estimator_
-        
         self.lrc.fit(self.X_train, self.y_train)
 
+        self.save_models()
 
         self.y_train_preds_rf = self.rfc.predict(self.X_train)
         self.y_test_preds_rf = self.rfc.predict(self.X_test)

@@ -1,12 +1,12 @@
 # coding=utf-8
 
-cat_columns = [
-    'Gender',
-    'Education_Level',
-    'Marital_Status',
-    'Income_Category',
-    'Card_Category'
-]
+cat_columns = {
+    'Gender':'Gender_Churn',
+    'Education_Level':'Education_Level_Churn',
+    'Marital_Status':'Marital_Status_Churn',
+    'Income_Category':'Income_Category_Churn',
+    'Card_Category':'Card_Category_Churn'
+}
 
 quant_columns = [
     'Customer_Age',
@@ -41,9 +41,12 @@ result_plots = {
     "shap":"Shap_Summary.png"
 }
 
-model_paths = {
+model_names = {
     "rfc":"rfc_model.pkl",
-    "lr":"logistic_model.pkl",
-    "rfc_org":"rfc_model_org.pkl",
-    "lr_org":"logistic_model_org.pkl"
+    "lr":"logistic_model.pkl"
+}
+
+model_names_pretrained = {
+    "rfc":"rfc_model_org.pkl",
+    "lr":"logistic_model_org.pkl"
 }
