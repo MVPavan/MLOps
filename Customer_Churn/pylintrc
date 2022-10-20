@@ -1,0 +1,2 @@
+; [GENERAL]
+; init-hook='import sys; sys.path.append("/data/MLOps/Customer_Churn")'

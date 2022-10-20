@@ -1,0 +1,8 @@
+.DS_Store
+*wandb
+*.pytest_cache
+*.vscode
+*/__pycache__
+Customer_Churn/images
+Customer_Churn/backup
+Customer_Churn/models
