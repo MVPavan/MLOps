@@ -1,6 +1,0 @@
-2022-10-17 15:35:36 [    INFO] Testing import_data: SUCCESS (churn_script_logging_and_tests.py:61)
-2022-10-17 15:35:56 [    INFO] Testing EDA: SUCCESS (churn_script_logging_and_tests.py:87)
-2022-10-17 15:35:56 [    INFO] Testing Encoder: SUCCESS (churn_script_logging_and_tests.py:98)
-2022-10-17 15:35:56 [    INFO] Testing Feature Engineering: SUCCESS (churn_script_logging_and_tests.py:108)
-2022-10-17 15:38:23 [    INFO] Testing Model training: SUCCESS (churn_script_logging_and_tests.py:124)
-2022-10-17 15:39:53 [    INFO] Testing Report Generation: SUCCESS (churn_script_logging_and_tests.py:140)
