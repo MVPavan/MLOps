@@ -1,9 +1,15 @@
 .DS_Store
+*.jpg
+*.csv
 *wandb
 *.pytest_cache
 *.vscode
-*/__pycache__
+*__pycache__
+*.ipynb_checkpoints
 Customer_Churn/images
 Customer_Churn/backup
 Customer_Churn/models
-*.jpg
+*artifacts
+*mlruns
+*outputs
+*multirun

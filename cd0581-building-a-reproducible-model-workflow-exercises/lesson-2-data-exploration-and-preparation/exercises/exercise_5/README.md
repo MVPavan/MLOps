@@ -33,7 +33,7 @@ Hints:
    - pip=20.3.3
    - pyarrow=2.0
    - pip:
-       - wandb==0.10.21
+       - wandb
    ```
 3. You do NOT need to generate the profiles from pandas-profiling (and you also do not need
    pandas-profiling as a dependency in ``conda.yml``)

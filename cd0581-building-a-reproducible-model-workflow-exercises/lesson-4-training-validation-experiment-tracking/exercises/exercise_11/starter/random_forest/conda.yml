@@ -10,5 +10,5 @@ dependencies:
   - plotly==4.4.1
   - pillow=8.1.2
   - pip:
-      - wandb==0.10.21
+      - wandb
       - omegaconf==2.0.6

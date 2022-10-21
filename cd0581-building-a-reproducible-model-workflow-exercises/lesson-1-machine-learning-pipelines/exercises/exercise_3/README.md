@@ -20,7 +20,7 @@ Your task is to stitch these two components together in a pipeline.
      * pip=20.3.3
    
    as well as the ``pip`` package:
-     * wandb==0.10.21
+     * wandb
 
 2. Complete ``main.py`` by adding the process_data step (instructions in the file)
 

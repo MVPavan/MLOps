@@ -40,12 +40,29 @@ def go(config: DictConfig):
     if "preprocess" in steps_to_execute:
 
         ## YOUR CODE HERE: call the preprocess step
-        pass
+        _ = mlflow.run(
+            os.path.join(root_path, "preprocess"),
+            "main",
+            parameters={
+                "input_artifact": "raw_data.parquet:latest",
+                "artifact_name": "preprocessed_data.csv",
+                "artifact_type": "preprocessed_data",
+                "artifact_description": "Pre process the downloaded data"
+            },
+        )
 
     if "check_data" in steps_to_execute:
 
         ## YOUR CODE HERE: call the check_data step
-        pass
+        _ = mlflow.run(
+            os.path.join(root_path, "check_data"),
+            "main",
+            parameters={
+                "reference_artifact": "raw_data.parquet:latest",
+                "sample_artifact": "preprocessed_data.csv",
+                "ks_alpha": "preprocessed_data"
+            },
+        )
 
     if "segregate" in steps_to_execute:
 

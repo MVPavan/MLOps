@@ -31,7 +31,7 @@ def go(args):
     df['song_name'].fillna(value='', inplace=True)
     df['text_feature'] = df['title'] + ' ' + df['song_name']
 
-    filename = "processed_data.csv"
+    filename = "preprocessed_data.csv"
     df.to_csv(filename)
 
     artifact = wandb.Artifact(
