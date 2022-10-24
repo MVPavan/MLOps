@@ -256,7 +256,8 @@ def train_models(X_train, X_test, y_train, y_test):
 
 
 if __name__ == "__main__":
-    df = import_data("/data/MLOps/Customer_Churn/data/bank_data.csv")
-    perform_eda(df, plots=False)
-    df = encoder_helper_loop(df)
-    X_train, X_test, y_train, y_test = 
+    # df = import_data("/data/MLOps/Customer_Churn/data/bank_data.csv")
+    # perform_eda(df, plots=False)
+    # df = encoder_helper_loop(df)
+    # X_train, X_test, y_train, y_test = 
+    pass
