@@ -3,7 +3,7 @@ name: Pytest Churn
 on: 
   push:
     branches:
-      - udacity
+      - 'udacity'
   workflow_dispatch:
 
 jobs:
