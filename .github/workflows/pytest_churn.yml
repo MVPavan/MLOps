@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - udacity
+  workflow_dispatch:
 
 jobs:
   build-linux:
